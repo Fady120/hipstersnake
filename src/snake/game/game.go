@@ -1,8 +1,9 @@
 package game
 
 import (
+	"log"
 	"math/rand"
-	"snake/src/snake/player" // Update this if you move the folder structure
+	"snake/src/snake/player"
 	"sync"
 	"time"
 )
@@ -93,6 +94,14 @@ func (game *Game) run() {
 			game.PlayerOne.ToClient <- game
 			game.PlayerTwo.ToClient <- game
 			if game.HasEnded {
+				err := StoreScore("playerOne", len(game.PlayerOne.Position))
+				if err != nil {
+					log.Printf("Failed to save playerOne's score: %v", err)
+				}
+				err = StoreScore("playerTwo", len(game.PlayerTwo.Position))
+				if err != nil {
+					log.Printf("Failed to save playerTwo's score: %v", err)
+				}
 				close(game.PlayerOne.ToClient)
 				close(game.PlayerTwo.ToClient)
 				return
