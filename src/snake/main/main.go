@@ -6,7 +6,7 @@ import (
 	"io"
 	"net/http"
 	"os"
-	"snake/src/snake/connection" // <-- Update if you move the code up a level
+	"snake/src/snake/connection"
 )
 
 func mainHandler(w http.ResponseWriter, req *http.Request) {
