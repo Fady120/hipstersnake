@@ -4,6 +4,10 @@ import (
 	"time"
 )
 
+// This package is Go modules–ready and can be imported as:
+// import "snake/src/snake/player"
+// or, if you move folders to the root, import "snake/player"
+
 type Player struct {
 	FromClient     chan *Message    `json:"-"`
 	ToClient       chan interface{} `json:"-"`

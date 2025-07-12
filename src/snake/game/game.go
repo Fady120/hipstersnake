@@ -2,7 +2,7 @@ package game
 
 import (
 	"math/rand"
-	"snake/player"
+	"snake/src/snake/player" // Update this if you move the folder structure
 	"sync"
 	"time"
 )
@@ -55,19 +55,19 @@ func create(PlayerOne *player.Player, PlayerTwo *player.Player) {
 		return
 	}
 	PlayerOne.Position = [][2]int{
-		[2]int{3, 7},
-		[2]int{3, 6},
-		[2]int{3, 5},
-		[2]int{3, 4},
-		[2]int{3, 3},
+		{3, 7},
+		{3, 6},
+		{3, 5},
+		{3, 4},
+		{3, 3},
 	}
 	PlayerOne.Heading = "down"
 	PlayerTwo.Position = [][2]int{
-		[2]int{46, 42},
-		[2]int{46, 43},
-		[2]int{46, 44},
-		[2]int{46, 45},
-		[2]int{46, 46},
+		{46, 42},
+		{46, 43},
+		{46, 44},
+		{46, 45},
+		{46, 46},
 	}
 	PlayerTwo.Heading = "up"
 	game := &Game{
@@ -99,10 +99,10 @@ func (game *Game) run() {
 			} else {
 				game.eatFood()
 				if game.PlayerOne.JustAte {
-					timeInterval *= 0.97
+					timeInterval = timeInterval * 97 / 100
 				}
 				if game.PlayerTwo.JustAte {
-					timeInterval *= 0.97
+					timeInterval = timeInterval * 97 / 100
 				}
 				if game.PlayerOne.JustAte || game.PlayerTwo.JustAte {
 					moveTicker = time.Tick(time.Duration(timeInterval))
